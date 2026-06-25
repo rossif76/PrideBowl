@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pride Bowl 2026 — Friday Referee Lookup</title>
+<style>
+  :root{
+    --ink:#16181d; --ink2:#4a4f5a; --line:#e4e6ea; --bg:#f6f6f4; --card:#ffffff;
+    --shadow:0 1px 2px rgba(20,24,33,.06),0 4px 16px rgba(20,24,33,.05);
+    --rainbow:linear-gradient(90deg,#e4572e 0%,#f2a900 18%,#f7d046 34%,#3fa34d 52%,#2e6da4 70%,#6a4c93 88%,#b23a78 100%);
+    --focus:#2e6da4;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-text-size-adjust:100%; line-height:1.4;
+  }
+  .spine{height:5px;background:var(--rainbow)}
+  header{position:sticky;top:0;z-index:20;background:rgba(246,246,244,.92);backdrop-filter:saturate(1.2) blur(6px);border-bottom:1px solid var(--line)}
+  .spine.sticky{position:sticky;top:0;z-index:21}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+  .hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;padding:14px 0 12px}
+  .kicker{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2);font-weight:700}
+  h1{font-size:19px;letter-spacing:-.01em;margin:0;font-weight:800}
+  h1 b{color:#b23a78}
+  .search{margin-left:auto;position:relative}
+  .search input{
+    width:240px;max-width:46vw;padding:9px 12px 9px 34px;border:1px solid var(--line);border-radius:10px;
+    font-size:15px;background:var(--card);color:var(--ink)
+  }
+  .search input:focus{outline:2px solid var(--focus);outline-offset:1px;border-color:transparent}
+  .search svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);opacity:.5}
+  main{max-width:1100px;margin:0 auto;padding:18px 16px 60px;display:grid;grid-template-columns:266px 1fr;gap:22px}
+  @media(max-width:760px){ main{grid-template-columns:1fr;gap:14px} }
+
+  /* name picker */
+  .pickerwrap{position:sticky;top:84px;align-self:start}
+  @media(max-width:760px){ .pickerwrap{position:static} }
+  .picker-h{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);font-weight:700;margin:2px 4px 8px}
+  .names{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;max-height:calc(100vh - 130px);overflow-y:auto}
+  @media(max-width:760px){ .names{max-height:46vh} }
+  .names a{
+    display:flex;justify-content:space-between;align-items:center;gap:8px;
+    padding:10px 14px;border-bottom:1px solid var(--line);color:var(--ink);text-decoration:none;font-size:15px
+  }
+  .names a:last-child{border-bottom:0}
+  .names a:hover{background:#f0f3f8}
+  .names a.active{background:#eef4fb;box-shadow:inset 3px 0 0 var(--focus);font-weight:700}
+  .names a .ct{font-size:11px;color:var(--ink2);font-variant-numeric:tabular-nums;background:#f1f1ef;border-radius:20px;padding:2px 8px;flex:none}
+  .names a:focus-visible{outline:2px solid var(--focus);outline-offset:-2px}
+  .nohit{padding:14px;color:var(--ink2);font-size:14px}
+
+  /* content */
+  .landing{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:34px 26px;text-align:center}
+  .landing h2{margin:.2em 0;font-size:20px}
+  .landing p{color:var(--ink2);max-width:46ch;margin:6px auto}
+  .person-h{display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap;margin:2px 0 14px}
+  .person-h .nm{font-size:26px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+  .person-h .nm .bar{display:block;height:4px;width:54px;background:var(--rainbow);border-radius:3px;margin-top:8px}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:7px 11px;font-size:12px;color:var(--ink2);box-shadow:var(--shadow)}
+  .chip b{display:block;font-size:17px;color:var(--ink);font-weight:800;font-variant-numeric:tabular-nums}
+  .legend{font-size:12px;color:var(--ink2);margin:0 2px 12px}
+  .legend b{color:var(--ink)}
+
+  .slot{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);margin-bottom:11px;display:grid;grid-template-columns:74px 8px 1fr;overflow:hidden}
+  .slot .time{padding:14px 8px 14px 14px;font-weight:800;font-size:14px;font-variant-numeric:tabular-nums;color:var(--ink)}
+  .slot .time small{display:block;font-weight:600;color:var(--ink2);font-size:11px;margin-top:3px}
+  .slot .tab{width:8px}
+  .slot .body{padding:13px 15px 13px 13px}
+  .slot.free{opacity:.72}
+  .slot.free .body{display:flex;align-items:center;color:var(--ink2);font-size:14px}
+  .row1{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:7px}
+  .badge{font-size:11px;font-weight:800;letter-spacing:.04em;color:#fff;border-radius:7px;padding:3px 8px}
+  .field{font-size:12px;font-weight:700;color:var(--ink2);border:1px solid var(--line);border-radius:7px;padding:3px 8px}
+  .yourole{font-size:11px;font-weight:800;letter-spacing:.03em;color:#fff;background:var(--ink);border-radius:7px;padding:3px 8px}
+  .dupe{font-size:11px;font-weight:700;color:#9c5700;background:#fff2cc;border:1px solid #f3d27a;border-radius:7px;padding:3px 8px}
+  .match{font-size:16px;font-weight:700;letter-spacing:-.01em;margin:1px 0 9px}
+  .match .v{color:var(--ink2);font-weight:600;margin:0 6px}
+  .crew{display:flex;gap:7px;flex-wrap:wrap}
+  .cm{display:inline-flex;align-items:center;gap:6px;font-size:13px;text-decoration:none;color:var(--ink);
+      border:1px solid var(--line);background:#fafafa;border-radius:9px;padding:5px 9px}
+  .cm:hover{background:#f0f3f8}
+  .cm:focus-visible{outline:2px solid var(--focus);outline-offset:1px}
+  .cm .pos{font-size:10px;font-weight:800;color:#fff;border-radius:5px;padding:1px 5px;background:var(--ink2)}
+  .cm.me{background:#eef4fb;border-color:#cfe0f3;font-weight:800}
+  .cm.me .pos{background:var(--focus)}
+  .pos.H{background:#1f6f43}.pos.D{background:#7a5cc0}.pos.B{background:#c06a1f}
+  .cm.me .pos.H,.cm.me .pos.D,.cm.me .pos.B{background:var(--focus)}
+
+  footer{max-width:1100px;margin:0 auto;padding:8px 16px 40px;color:var(--ink2);font-size:12px}
+  .back{display:none}
+  @media(max-width:760px){
+    .back{display:inline-flex;gap:6px;align-items:center;margin:0 0 10px;font-size:14px;color:var(--focus);text-decoration:none;font-weight:700}
+    body.viewing .pickerwrap{display:none}
+    body:not(.viewing) .content{display:none}
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .slot,.person-h,.landing{animation:rise .22s ease both}
+    @keyframes rise{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+  }
+  @media print{
+    header,.pickerwrap,.search,.back,footer .hint{display:none!important}
+    main{display:block;padding:0}
+    .slot{break-inside:avoid;box-shadow:none}
+    body{background:#fff}
+  }
+</style>
+</head>
+<body>
+<div class="spine sticky"></div>
+<header>
+  <div class="wrap hd">
+    <div>
+      <div class="kicker">Pride Bowl 2026 · Friday Pool Play</div>
+      <h1>Referee <b>Day Sheet</b></h1>
+    </div>
+    <div class="search">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input id="q" type="search" placeholder="Find your name" autocomplete="off" aria-label="Find your name">
+    </div>
+  </div>
+</header>
+
+<main>
+  <aside class="pickerwrap">
+    <div class="picker-h">Choose your name</div>
+    <nav class="names" id="names" aria-label="Referees"></nav>
+  </aside>
+  <section class="content" id="content">
+    <a href="#" class="back" id="back">‹ All referees</a>
+    <div id="view"></div>
+  </section>
+</main>
+
+<footer>
+  <div class="hint">Tip: your name is a link — bookmark or text yourself <b>this page + your name</b> to jump straight to your day. Crews are <b>H</b> Head · <b>D</b> Down · <b>B</b> Back.</div>
+  <div style="margin-top:6px">Source: verified Friday assignments (v6). 98 games · 61 referees · no double-bookings.</div>
+</footer>
+
+<script>
+const DATA={"games":[{"s":1,"time":"8:00 AM","code":"WB","pool":"W+ B","fill":"#ECC2DA","acc":"#97306A","field":1,"a":"LA Icons Black","b":"Washington DC Valkyries","crew":[{"role":"H","name":"Frank Rossi"},{"role":"D","name":"Jude McKenna"},{"role":"B","name":"Regan McKendry"}]},{"s":1,"time":"8:00 AM","code":"WB","pool":"W+ B","fill":"#ECC2DA","acc":"#97306A","field":2,"a":"Chicago Sparks","b":"Atlanta Trouble","crew":[{"role":"H","name":"Brandon Waggoner"},{"role":"D","name":"Chris Sauers"},{"role":"B","name":"Daniel Czecholinski"}]},{"s":1,"time":"8:00 AM","code":"OA","pool":"Open A","fill":"#DCE7F5","acc":"#2E6DA4","field":3,"a":"Washington DC Admirals","b":"Denver Summit Blue","crew":[{"role":"H","name":"David Bruce"},{"role":"D","name":"Michael Colgrove"},{"role":"B","name":"Danny Jesse"}]},{"s":1,"time":"8:00 AM","code":"OA","pool":"Open A","fill":"#DCE7F5","acc":"#2E6DA4","field":4,"a":"Washington DC Elite","b":"Phoenix Wildfire Maroon","crew":[{"role":"H","name":"Lance Burage"},{"role":"D","name":"KATRINA COOK"},{"role":"B","name":"Scott McClung"}]},{"s":1,"time":"8:00 AM","code":"WB","pool":"W+ B","fill":"#ECC2DA","acc":"#97306A","field":5,"a":"Phoenix Fahrenheit Blue","b":"Beantown Ballers","crew":[{"role":"H","name":"Nat Hewett"},{"role":"D","name":"Brooke Blankenship"},{"role":"B","name":"Nick Sacco"}]},{"s":1,"time":"8:00 AM","code":"WB","pool":"W+ B","fill":"#ECC2DA","acc":"#97306A","field":6,"a":"Philly Lightning Black","b":"ATX Heat Onyx","crew":[{"role":"H","name":"Jason Morlan"},{"role":"D","name":"B. Mark Henry"},{"role":"B","name":"Jonathan Jensen"}]},{"s":1,"time":"8:00 AM","code":"WC","pool":"W+ C","fill":"#D89BC0","acc":"#7D2557","field":7,"a":"Minnesota Hot Dish","b":"San Francisco Seals Teal","crew":[{"role":"H","name":"Sheldon Smith"},{"role":"D","name":"Ken Westermann"},{"role":"B","name":"Jim Clerkin"}]},{"s":1,"time":"8:00 AM","code":"WC","pool":"W+ C","fill":"#D89BC0","acc":"#7D2557","field":8,"a":"LA Icons Gold","b":"Michigan Pride Rose Gold","crew":[{"role":"H","name":"Matthew C Ardoin"},{"role":"D","name":"Dwight Jr"},{"role":"B","name":"Gary Taylor"}]},{"s":1,"time":"8:00 AM","code":"WB","pool":"W+ B","fill":"#ECC2DA","acc":"#97306A","field":9,"a":"Philadelphia Lightning Green","b":"San Diego Sirens","crew":[{"role":"H","name":"David Green"},{"role":"D","name":"Ryan Cardwell"},{"role":"B","name":"Josh Bytendorp"}]},{"s":1,"time":"8:00 AM","code":"WB","pool":"W+ B","fill":"#ECC2DA","acc":"#97306A","field":10,"a":"Denver MHC Red","b":"San Antonio Flying Chanclitas","crew":[{"role":"H","name":"Matthew Herek"},{"role":"D","name":"Anthony Walker"},{"role":"B","name":"Isaac Hamlin"}]},{"s":1,"time":"8:00 AM","code":"WC","pool":"W+ C","fill":"#D89BC0","acc":"#7D2557","field":11,"a":"Chicago Storm","b":"Atlanta Resurgens","crew":[{"role":"H","name":"Neill Kovrig"},{"role":"D","name":"Eric Weidner"},{"role":"B","name":"Christopher McSorley"}]},{"s":1,"time":"8:00 AM","code":"WC","pool":"W+ C","fill":"#D89BC0","acc":"#7D2557","field":12,"a":"Washington DC Sirens","b":"Houston Legends","crew":[{"role":"H","name":"Chris Dockum"},{"role":"D","name":"S. Micki Jones"},{"role":"B","name":"Austin Evans"}]},{"s":1,"time":"8:00 AM","code":"OC","pool":"Open C","fill":"#8DB7DB","acc":"#15466B","field":13,"a":"ATX Heat Verde","b":"Houston Hurricanes","crew":[{"role":"H","name":"Lee Townsend"},{"role":"D","name":"Justin Friedman-Hurvitz"},{"role":"B","name":"Carlos Carles"}]},{"s":1,"time":"8:00 AM","code":"OC","pool":"Open C","fill":"#8DB7DB","acc":"#15466B","field":14,"a":"LA Express Silver","b":"PVD Anchors Steel","crew":[{"role":"H","name":"Keith Smith"},{"role":"D","name":"Steven Amedeo"},{"role":"B","name":"Matthew P Lucerto"}]},{"s":2,"time":"9:25 AM","code":"OA","pool":"Open A","fill":"#DCE7F5","acc":"#2E6DA4","field":1,"a":"San Diego Drip","b":"LA Express Gold","crew":[{"role":"H","name":"Shawn Albritton"},{"role":"D","name":"Nick Sacco"},{"role":"B","name":"Nat Hewett"}]},{"s":2,"time":"9:25 AM","code":"OA","pool":"Open A","fill":"#DCE7F5","acc":"#2E6DA4","field":2,"a":"Chicago Freeze","b":"Seattle Boom","crew":[{"role":"H","name":"David Green"},{"role":"D","name":"Christopher McSorley"},{"role":"B","name":"Neill Kovrig"}]},{"s":2,"time":"9:25 AM","code":"OB","pool":"Open B","fill":"#B6D1E9","acc":"#1F5C8B","field":3,"a":"Washington DC Commanders","b":"Minnesota Lumberjocks Crimson","crew":[{"role":"H","name":"Matthew Herek"},{"role":"D","name":"Bill Henderson"},{"role":"B","name":"Keith Smith"}]},{"s":2,"time":"9:25 AM","code":"OB","pool":"Open B","fill":"#B6D1E9","acc":"#1F5C8B","field":4,"a":"Chicago Blaze","b":"San Francisco Seals","crew":[{"role":"H","name":"Jason Morlan"},{"role":"D","name":"Adam Connaker"},{"role":"B","name":"Matthew C Ardoin"}]},{"s":2,"time":"9:25 AM","code":"WA","pool":"W+ A","fill":"#F7DBE8","acc":"#B23A78","field":5,"a":"South Florida CAT-5 Black","b":"Phoenix Fahrenheit Gold","crew":[{"role":"H","name":"Lee Townsend"},{"role":"D","name":"Jonathan P Killian"},{"role":"B","name":"Steven Amedeo"}]},{"s":2,"time":"9:25 AM","code":"WA","pool":"W+ A","fill":"#F7DBE8","acc":"#B23A78","field":6,"a":"ATX Heat Diamond","b":"Atlanta Underground","crew":[{"role":"H","name":"Lance Burage"},{"role":"D","name":"Desiree Abrams"},{"role":"B","name":"Daniel Czecholinski"}]},{"s":2,"time":"9:25 AM","code":"WC","pool":"W+ C","fill":"#D89BC0","acc":"#7D2557","field":7,"a":"LA Icons Blue","b":"PVD Anchors Cobalt","crew":[{"role":"H","name":"Austin Evans"},{"role":"D","name":"Carlos Carles"},{"role":"B","name":"Rich Serrano"}]},{"s":2,"time":"9:25 AM","code":"WC","pool":"W+ C","fill":"#D89BC0","acc":"#7D2557","field":8,"a":"ATX Heat Sapphire","b":"Atlanta Gridlock","crew":[{"role":"H","name":"Marcus Han"},{"role":"D","name":"S. Micki Jones"},{"role":"B","name":"Rob Miller"}]},{"s":2,"time":"9:25 AM","code":"OB","pool":"Open B","fill":"#B6D1E9","acc":"#1F5C8B","field":9,"a":"LA Express Black","b":"Denver Summit Black","crew":[{"role":"H","name":"Sheldon Smith"},{"role":"D","name":"Eric Weidner"},{"role":"B","name":"Justin Friedman-Hurvitz"}]},{"s":2,"time":"9:25 AM","code":"OB","pool":"Open B","fill":"#B6D1E9","acc":"#1F5C8B","field":10,"a":"Boston Banshees","b":"ATX Heat Pink","crew":[{"role":"H","name":"Jonathon Marquez"},{"role":"D","name":"Josh Bytendorp"},{"role":"B","name":"Jay Kramer"}]},{"s":2,"time":"9:25 AM","code":"OB","pool":"Open B","fill":"#B6D1E9","acc":"#1F5C8B","field":11,"a":"Denver Summit Gold","b":"Michigan Pride Black","crew":[{"role":"H","name":"Chad Fisher"},{"role":"D","name":"Danny Jesse"},{"role":"B","name":"Chris Sauers"}]},{"s":2,"time":"9:25 AM","code":"OC","pool":"Open C","fill":"#8DB7DB","acc":"#15466B","field":12,"a":"ATX Heat Purple","b":"Michigan Pride Blue","crew":[{"role":"H","name":"Regan McKendry"},{"role":"D","name":"Chris Dockum"},{"role":"B","name":"Barraque Monfils- Evangelista"}]},{"s":2,"time":"9:25 AM","code":"OC","pool":"Open C","fill":"#8DB7DB","acc":"#15466B","field":13,"a":"Seattle Grind","b":"Buffalo Storm","crew":[{"role":"H","name":"Laurie Aaronson"},{"role":"D","name":"Ryan Cardwell"},{"role":"B","name":"Jonathan Jensen"}]},{"s":2,"time":"9:25 AM","code":"OC","pool":"Open C","fill":"#8DB7DB","acc":"#15466B","field":14,"a":"Denver Summit Green","b":"Washington DC Delta Force","crew":[{"role":"H","name":"Brian Hawker"},{"role":"D","name":"Anthony M Lombardo"},{"role":"B","name":"Colby Shoop"}]},{"s":3,"time":"10:40 AM","code":"WA","pool":"W+ A","fill":"#F7DBE8","acc":"#B23A78","field":1,"a":"South Florida Cat-5 Purple","b":"San Diego Sol","crew":[{"role":"H","name":"David Green"},{"role":"D","name":"KATRINA COOK"},{"role":"B","name":"Scott McClung"}]},{"s":3,"time":"10:40 AM","code":"WA","pool":"W+ A","fill":"#F7DBE8","acc":"#B23A78","field":2,"a":"Chicago Surge","b":"Washington DC Senators","crew":[{"role":"H","name":"Frank Rossi"},{"role":"D","name":"Matthew P Lucerto"},{"role":"B","name":"Regan McKendry"}]},{"s":3,"time":"10:40 AM","code":"OC","pool":"Open C","fill":"#8DB7DB","acc":"#15466B","field":3,"a":"Mass Hysteria","b":"Chicago Vortex","crew":[{"role":"H","name":"Neill Kovrig"},{"role":"D","name":"Dwight Jr"},{"role":"B","name":"Michael Colgrove"}]},{"s":3,"time":"10:40 AM","code":"OC","pool":"Open C","fill":"#8DB7DB","acc":"#15466B","field":4,"a":"Chicago Thunder","b":"Minnesota Lumberjocks Midnight","crew":[{"role":"H","name":"Brandon Waggoner"},{"role":"D","name":"Jonathan Jensen"},{"role":"B","name":"Adam Connaker"}]},{"s":3,"time":"10:40 AM","code":"WB","pool":"W+ B","fill":"#ECC2DA","acc":"#97306A","field":5,"a":"LA Icons Black","b":"Beantown Ballers","crew":[{"role":"H","name":"Keith Smith"},{"role":"D","name":"S. Micki Jones"},{"role":"B","name":"Chris Dockum"}]},{"s":3,"time":"10:40 AM","code":"WB","pool":"W+ B","fill":"#ECC2DA","acc":"#97306A","field":6,"a":"Phoenix Fahrenheit Blue","b":"Washington DC Valkyries","crew":[{"role":"H","name":"Matthew Herek"},{"role":"D","name":"Bill Henderson"},{"role":"B","name":"Justin Friedman-Hurvitz"}]},{"s":3,"time":"10:40 AM","code":"WB","pool":"W+ B","fill":"#ECC2DA","acc":"#97306A","field":7,"a":"Chicago Sparks","b":"San Diego Sirens","crew":[{"role":"H","name":"Jonathon Marquez"},{"role":"D","name":"Gary Taylor"},{"role":"B","name":"Carlos Carles"}]},{"s":3,"time":"10:40 AM","code":"WB","pool":"W+ B","fill":"#ECC2DA","acc":"#97306A","field":8,"a":"Philadelphia Lightning Green","b":"Atlanta Trouble","crew":[{"role":"H","name":"Shawn Albritton"},{"role":"D","name":"Danny Jesse"},{"role":"B","name":"Isaac Hamlin"}]},{"s":3,"time":"10:40 AM","code":"WB","pool":"W+ B","fill":"#ECC2DA","acc":"#97306A","field":9,"a":"Denver MHC Red","b":"ATX Heat Onyx","crew":[{"role":"H","name":"Steven Amedeo"},{"role":"D","name":"Ryan Cardwell"},{"role":"B","name":"Jude McKenna"}]},{"s":3,"time":"10:40 AM","code":"WB","pool":"W+ B","fill":"#ECC2DA","acc":"#97306A","field":10,"a":"Philly Lightning Black","b":"San Antonio Flying Chanclitas","crew":[{"role":"H","name":"Austin Evans"},{"role":"D","name":"Barraque Monfils- Evangelista"},{"role":"B","name":"Anthony M Lombardo"}]},{"s":3,"time":"10:40 AM","code":"WC","pool":"W+ C","fill":"#D89BC0","acc":"#7D2557","field":11,"a":"Chicago Storm","b":"Houston Legends","crew":[{"role":"H","name":"Laurie Aaronson"},{"role":"D","name":"Anthony Walker"},{"role":"B","name":"Josh Bytendorp"}]},{"s":3,"time":"10:40 AM","code":"WC","pool":"W+ C","fill":"#D89BC0","acc":"#7D2557","field":12,"a":"Washington DC Sirens","b":"Atlanta Resurgens","crew":[{"role":"H","name":"Chad Fisher"},{"role":"D","name":"Leeron Kopelman"},{"role":"B","name":"Jim Clerkin"}]},{"s":3,"time":"10:40 AM","code":"OC","pool":"Open C","fill":"#8DB7DB","acc":"#15466B","field":13,"a":"Philadelphia Revolution Red","b":"San Antonio Los Tejanos","crew":[{"role":"H","name":"Jonathan P Killian"},{"role":"D","name":"Colby Shoop"},{"role":"B","name":"David Bruce"}]},{"s":3,"time":"10:40 AM","code":"WC","pool":"W+ C","fill":"#D89BC0","acc":"#7D2557","field":14,"a":"LA Icons Gold","b":"San Francisco Seals Teal","crew":[{"role":"H","name":"Rob Miller"},{"role":"D","name":"Christopher McSorley"},{"role":"B","name":"Rich Serrano"}]},{"s":4,"time":"12:30 PM","code":"OA","pool":"Open A","fill":"#DCE7F5","acc":"#2E6DA4","field":1,"a":"Denver Summit Blue","b":"Phoenix Wildfire Maroon","crew":[{"role":"H","name":"Desiree Abrams"},{"role":"D","name":"Chris Sauers"},{"role":"B","name":"Jim Clerkin"}]},{"s":4,"time":"12:30 PM","code":"OA","pool":"Open A","fill":"#DCE7F5","acc":"#2E6DA4","field":2,"a":"San Diego Drip","b":"Chicago Freeze","crew":[{"role":"H","name":"Brandon Waggoner"},{"role":"D","name":"Michael Colgrove"},{"role":"B","name":"Jay Kramer"}]},{"s":4,"time":"12:30 PM","code":"OB","pool":"Open B","fill":"#B6D1E9","acc":"#1F5C8B","field":3,"a":"ATX Heat Pink","b":"Denver Summit Black","crew":[{"role":"H","name":"David Bruce"},{"role":"D","name":"Andrew Staples"},{"role":"B","name":"Regan McKendry"}]},{"s":4,"time":"12:30 PM","code":"OB","pool":"Open B","fill":"#B6D1E9","acc":"#1F5C8B","field":4,"a":"Chicago Blaze","b":"Denver Summit Gold","crew":[{"role":"H","name":"Sheldon Smith"},{"role":"D","name":"Gary Taylor"},{"role":"B","name":"Eric Weidner"}]},{"s":4,"time":"12:30 PM","code":"OA","pool":"Open A","fill":"#DCE7F5","acc":"#2E6DA4","field":5,"a":"Washington DC Admirals","b":"LA Express Gold","crew":[{"role":"H","name":"Lance Burage"},{"role":"D","name":"Matthew Herek"},{"role":"B","name":"Keith Smith"}]},{"s":4,"time":"12:30 PM","code":"OA","pool":"Open A","fill":"#DCE7F5","acc":"#2E6DA4","field":6,"a":"Washington DC Elite","b":"Seattle Boom","crew":[{"role":"H","name":"Matthew C Ardoin"},{"role":"D","name":"Chad Fisher"},{"role":"B","name":"Steven Amedeo"}]},{"s":4,"time":"12:30 PM","code":"OB","pool":"Open B","fill":"#B6D1E9","acc":"#1F5C8B","field":7,"a":"LA Express Black","b":"Boston Banshees","crew":[{"role":"H","name":"Lee Townsend"},{"role":"D","name":"Nick Sacco"},{"role":"B","name":"Anthony M Lombardo"}]},{"s":4,"time":"12:30 PM","code":"OC","pool":"Open C","fill":"#8DB7DB","acc":"#15466B","field":8,"a":"ATX Heat Verde","b":"PVD Anchors Steel","crew":[{"role":"H","name":"Frank Rossi"},{"role":"D","name":"Brian Hawker"},{"role":"B","name":"Adam Connaker"}]},{"s":4,"time":"12:30 PM","code":"OB","pool":"Open B","fill":"#B6D1E9","acc":"#1F5C8B","field":9,"a":"Michigan Pride Black","b":"Washington DC Commanders","crew":[{"role":"H","name":"Nat Hewett"},{"role":"D","name":"Jonathan P Killian"},{"role":"B","name":"Christopher McSorley"}]},{"s":4,"time":"12:30 PM","code":"OC","pool":"Open C","fill":"#8DB7DB","acc":"#15466B","field":10,"a":"LA Express Silver","b":"Houston Hurricanes","crew":[{"role":"H","name":"Daniel Czecholinski"},{"role":"D","name":"Jude McKenna"},{"role":"B","name":"Marcus Han"}]},{"s":4,"time":"12:30 PM","code":"OC","pool":"Open C","fill":"#8DB7DB","acc":"#15466B","field":11,"a":"Buffalo Storm","b":"Washington DC Delta Force","crew":[{"role":"H","name":"Chris Dockum"},{"role":"D","name":"Scott McClung"},{"role":"B","name":"Bill Henderson"}]},{"s":4,"time":"12:30 PM","code":"WC","pool":"W+ C","fill":"#D89BC0","acc":"#7D2557","field":12,"a":"Minnesota Hot Dish","b":"Michigan Pride Rose Gold","crew":[{"role":"H","name":"Isaac Hamlin"},{"role":"D","name":"Jonathon Marquez"},{"role":"B","name":"Anthony Walker"}]},{"s":4,"time":"12:30 PM","code":"WC","pool":"W+ C","fill":"#D89BC0","acc":"#7D2557","field":13,"a":"LA Icons Blue","b":"Atlanta Gridlock","crew":[{"role":"H","name":"Neill Kovrig"},{"role":"D","name":"Laurie Aaronson"},{"role":"B","name":"Dwight Jr"}]},{"s":4,"time":"12:30 PM","code":"OC","pool":"Open C","fill":"#8DB7DB","acc":"#15466B","field":14,"a":"Denver Summit Green","b":"Seattle Grind","crew":[{"role":"H","name":"Jason Morlan"},{"role":"D","name":"Carlos Carles"},{"role":"B","name":"Barraque Monfils- Evangelista"}]},{"s":5,"time":"1:50 PM","code":"WA","pool":"W+ A","fill":"#F7DBE8","acc":"#B23A78","field":1,"a":"San Diego Sol","b":"Phoenix Fahrenheit Gold","crew":[{"role":"H","name":"Desiree Abrams"},{"role":"D","name":"Bill Henderson"},{"role":"B","name":"Jay Kramer"}]},{"s":5,"time":"1:50 PM","code":"WA","pool":"W+ A","fill":"#F7DBE8","acc":"#B23A78","field":2,"a":"ATX Heat Diamond","b":"Chicago Surge","crew":[{"role":"H","name":"David Green"},{"role":"D","name":"Danny Jesse"},{"role":"B","name":"Lance Burage"}]},{"s":5,"time":"1:50 PM","code":"WA","pool":"W+ A","fill":"#F7DBE8","acc":"#B23A78","field":3,"a":"South Florida CAT-5 Black","b":"Washington DC Senators","crew":[{"role":"H","name":"Matthew Herek"},{"role":"D","name":"Colby Shoop"},{"role":"B","name":"Matthew C Ardoin"}]},{"s":5,"time":"1:50 PM","code":"WA","pool":"W+ A","fill":"#F7DBE8","acc":"#B23A78","field":4,"a":"South Florida Cat-5 Purple","b":"Atlanta Underground","crew":[{"role":"H","name":"Shawn Albritton"},{"role":"D","name":"Michael Colgrove"},{"role":"B","name":"Matthew P Lucerto"}]},{"s":5,"time":"1:50 PM","code":"WB","pool":"W+ B","fill":"#ECC2DA","acc":"#97306A","field":5,"a":"Chicago Sparks","b":"Philadelphia Lightning Green","crew":[{"role":"H","name":"Austin Evans"},{"role":"D","name":"S. Micki Jones"},{"role":"B","name":"Adam Connaker"}]},{"s":5,"time":"1:50 PM","code":"OC","pool":"Open C","fill":"#8DB7DB","acc":"#15466B","field":6,"a":"Philadelphia Revolution Red","b":"Michigan Pride Blue","crew":[{"role":"H","name":"Jason Morlan"},{"role":"D","name":"Ryan Cardwell"},{"role":"B","name":"Dwight Jr"}]},{"s":5,"time":"1:50 PM","code":"WB","pool":"W+ B","fill":"#ECC2DA","acc":"#97306A","field":7,"a":"San Diego Sirens","b":"Atlanta Trouble","crew":[{"role":"H","name":"Rob Miller"},{"role":"D","name":"Justin Friedman-Hurvitz"},{"role":"B","name":"Jonathan Jensen"}]},{"s":5,"time":"1:50 PM","code":"WB","pool":"W+ B","fill":"#ECC2DA","acc":"#97306A","field":8,"a":"Beantown Ballers","b":"Washington DC Valkyries","crew":[{"role":"H","name":"Chris Sauers"},{"role":"D","name":"Rich Serrano"},{"role":"B","name":"Anthony Walker"}]},{"s":5,"time":"1:50 PM","code":"OB","pool":"Open B","fill":"#B6D1E9","acc":"#1F5C8B","field":9,"a":"Minnesota Lumberjocks Crimson","b":"San Francisco Seals","crew":[{"role":"H","name":"Nick Sacco"},{"role":"D","name":"KATRINA COOK"},{"role":"B","name":"Jim Clerkin"}]},{"s":5,"time":"1:50 PM","code":"WB","pool":"W+ B","fill":"#ECC2DA","acc":"#97306A","field":10,"a":"LA Icons Black","b":"Phoenix Fahrenheit Blue","crew":[{"role":"H","name":"Chad Fisher"},{"role":"D","name":"Anthony M Lombardo"},{"role":"B","name":"Gary Taylor"}]},{"s":5,"time":"1:50 PM","code":"WC","pool":"W+ C","fill":"#D89BC0","acc":"#7D2557","field":11,"a":"Houston Legends","b":"Atlanta Resurgens","crew":[{"role":"H","name":"Brian Hawker"},{"role":"D","name":"Ken Westermann"},{"role":"B","name":"Peter Moy"}]},{"s":5,"time":"1:50 PM","code":"OC","pool":"Open C","fill":"#8DB7DB","acc":"#15466B","field":12,"a":"Mass Hysteria","b":"Minnesota Lumberjocks Midnight","crew":[{"role":"H","name":"Marcus Han"},{"role":"D","name":"Christopher McSorley"},{"role":"B","name":"Barraque Monfils- Evangelista"}]},{"s":5,"time":"1:50 PM","code":"WC","pool":"W+ C","fill":"#D89BC0","acc":"#7D2557","field":13,"a":"ATX Heat Sapphire","b":"PVD Anchors Cobalt","crew":[{"role":"H","name":"Laurie Aaronson"},{"role":"D","name":"Jude McKenna"},{"role":"B","name":"Scott McClung"}]},{"s":5,"time":"1:50 PM","code":"OC","pool":"Open C","fill":"#8DB7DB","acc":"#15466B","field":14,"a":"ATX Heat Purple","b":"San Antonio Los Tejanos","crew":[{"role":"H","name":"Daniel Czecholinski"},{"role":"D","name":"Josh Bytendorp"},{"role":"B","name":"Isaac Hamlin"}]},{"s":6,"time":"3:05 PM","code":"WC","pool":"W+ C","fill":"#D89BC0","acc":"#7D2557","field":1,"a":"Chicago Storm","b":"Washington DC Sirens","crew":[{"role":"H","name":"Jonathon Marquez"},{"role":"D","name":"Justin Friedman-Hurvitz"},{"role":"B","name":"Carlos Carles"}]},{"s":6,"time":"3:05 PM","code":"OA","pool":"Open A","fill":"#DCE7F5","acc":"#2E6DA4","field":2,"a":"Chicago Freeze","b":"Washington DC Elite","crew":[{"role":"H","name":"Desiree Abrams"},{"role":"D","name":"Danny Jesse"},{"role":"B","name":"Daniel Czecholinski"}]},{"s":6,"time":"3:05 PM","code":"OA","pool":"Open A","fill":"#DCE7F5","acc":"#2E6DA4","field":3,"a":"Phoenix Wildfire Maroon","b":"Seattle Boom","crew":[{"role":"H","name":"Brandon Waggoner"},{"role":"D","name":"Eric Weidner"},{"role":"B","name":"Austin Evans"}]},{"s":6,"time":"3:05 PM","code":"OA","pool":"Open A","fill":"#DCE7F5","acc":"#2E6DA4","field":4,"a":"Denver Summit Blue","b":"LA Express Gold","crew":[{"role":"H","name":"Frank Rossi"},{"role":"D","name":"Chad Fisher"},{"role":"B","name":"Scott McClung"}]},{"s":6,"time":"3:05 PM","code":"OB","pool":"Open B","fill":"#B6D1E9","acc":"#1F5C8B","field":5,"a":"Chicago Blaze","b":"Washington DC Commanders","crew":[{"role":"H","name":"David Bruce"},{"role":"D","name":"Regan McKendry"},{"role":"B","name":"Steven Amedeo"}]},{"s":6,"time":"3:05 PM","code":"OA","pool":"Open A","fill":"#DCE7F5","acc":"#2E6DA4","field":6,"a":"San Diego Drip","b":"Washington DC Admirals","crew":[{"role":"H","name":"David Green"},{"role":"D","name":"Sheldon Smith"},{"role":"B","name":"Jim Clerkin"}]},{"s":6,"time":"3:05 PM","code":"OC","pool":"Open C","fill":"#8DB7DB","acc":"#15466B","field":7,"a":"PVD Anchors Steel","b":"Houston Hurricanes","crew":[{"role":"H","name":"Rob Miller"},{"role":"D","name":"Ryan Cardwell"},{"role":"B","name":"Anthony Walker"}]},{"s":6,"time":"3:05 PM","code":"OB","pool":"Open B","fill":"#B6D1E9","acc":"#1F5C8B","field":8,"a":"Boston Banshees","b":"Denver Summit Black","crew":[{"role":"H","name":"Neill Kovrig"},{"role":"D","name":"Chris Dockum"},{"role":"B","name":"Isaac Hamlin"}]},{"s":6,"time":"3:05 PM","code":"WB","pool":"W+ B","fill":"#ECC2DA","acc":"#97306A","field":9,"a":"San Antonio Flying Chanclitas","b":"ATX Heat Onyx","crew":[{"role":"H","name":"Shawn Albritton"},{"role":"D","name":"Colby Shoop"},{"role":"B","name":"Gary Taylor"}]},{"s":6,"time":"3:05 PM","code":"OC","pool":"Open C","fill":"#8DB7DB","acc":"#15466B","field":10,"a":"Seattle Grind","b":"Washington DC Delta Force","crew":[{"role":"H","name":"Lee Townsend"},{"role":"D","name":"Josh Bytendorp"},{"role":"B","name":"Rich Serrano"}]},{"s":6,"time":"3:05 PM","code":"WB","pool":"W+ B","fill":"#ECC2DA","acc":"#97306A","field":11,"a":"Philly Lightning Black","b":"Denver MHC Red","crew":[{"role":"H","name":"Chris Sauers"},{"role":"D","name":"Dwight Jr"},{"role":"B","name":"Brian Hawker"}]},{"s":6,"time":"3:05 PM","code":"WC","pool":"W+ C","fill":"#D89BC0","acc":"#7D2557","field":12,"a":"LA Icons Gold","b":"Minnesota Hot Dish","crew":[{"role":"H","name":"Marcus Han"},{"role":"D","name":"B. Mark Henry"},{"role":"B","name":"Peter Moy"}]},{"s":6,"time":"3:05 PM","code":"OC","pool":"Open C","fill":"#8DB7DB","acc":"#15466B","field":13,"a":"ATX Heat Verde","b":"LA Express Silver","crew":[{"role":"H","name":"Nat Hewett"},{"role":"D","name":"Andrew Staples"},{"role":"B","name":"Jonathan Jensen"}]},{"s":6,"time":"3:05 PM","code":"WC","pool":"W+ C","fill":"#D89BC0","acc":"#7D2557","field":14,"a":"San Francisco Seals Teal","b":"Michigan Pride Rose Gold","crew":[{"role":"H","name":"Matthew P Lucerto"},{"role":"D","name":"Barraque Monfils- Evangelista"},{"role":"B","name":"Jonathan P Killian"}]},{"s":7,"time":"4:20 PM","code":"WA","pool":"W+ A","fill":"#F7DBE8","acc":"#B23A78","field":1,"a":"Phoenix Fahrenheit Gold","b":"Washington DC Senators","crew":[{"role":"H","name":"Sheldon Smith"},{"role":"D","name":"KATRINA COOK"},{"role":"B","name":"Marcus Han"}]},{"s":7,"time":"4:20 PM","code":"WA","pool":"W+ A","fill":"#F7DBE8","acc":"#B23A78","field":2,"a":"Chicago Surge","b":"South Florida CAT-5 Black","crew":[{"role":"H","name":"David Bruce"},{"role":"D","name":"Jason Morlan"},{"role":"B","name":"Desiree Abrams"}]},{"s":7,"time":"4:20 PM","code":"OC","pool":"Open C","fill":"#8DB7DB","acc":"#15466B","field":3,"a":"Buffalo Storm","b":"Denver Summit Green","crew":[{"role":"H","name":"Rob Miller"},{"role":"D","name":"Isaac Hamlin"},{"role":"B","name":"Adam Connaker"}]},{"s":7,"time":"4:20 PM","code":"WA","pool":"W+ A","fill":"#F7DBE8","acc":"#B23A78","field":4,"a":"ATX Heat Diamond","b":"South Florida Cat-5 Purple","crew":[{"role":"H","name":"Nick Sacco"},{"role":"D","name":"Rich Serrano"},{"role":"B","name":"Brandon Waggoner"}]},{"s":7,"time":"4:20 PM","code":"OB","pool":"Open B","fill":"#B6D1E9","acc":"#1F5C8B","field":5,"a":"Minnesota Lumberjocks Crimson","b":"Michigan Pride Black","crew":[{"role":"H","name":"Brian Hawker"},{"role":"D","name":"Chris Dockum"},{"role":"B","name":"Carlos Carles"}]},{"s":7,"time":"4:20 PM","code":"WA","pool":"W+ A","fill":"#F7DBE8","acc":"#B23A78","field":6,"a":"San Diego Sol","b":"Atlanta Underground","crew":[{"role":"H","name":"Steven Amedeo"},{"role":"D","name":"Regan McKendry"},{"role":"B","name":"Lee Townsend"}]},{"s":7,"time":"4:20 PM","code":"WC","pool":"W+ C","fill":"#D89BC0","acc":"#7D2557","field":7,"a":"LA Icons Blue","b":"ATX Heat Sapphire","crew":[{"role":"H","name":"Keith Smith"},{"role":"D","name":"Danny Jesse"},{"role":"B","name":"Christopher McSorley"}]},{"s":7,"time":"4:20 PM","code":"OB","pool":"Open B","fill":"#B6D1E9","acc":"#1F5C8B","field":8,"a":"LA Express Black","b":"Denver Summit Gold","crew":[{"role":"H","name":"Lance Burage"},{"role":"D","name":"Colby Shoop"},{"role":"B","name":"Matthew P Lucerto"}]},{"s":7,"time":"4:20 PM","code":"OB","pool":"Open B","fill":"#B6D1E9","acc":"#1F5C8B","field":9,"a":"ATX Heat Pink","b":"San Francisco Seals","crew":[{"role":"H","name":"Frank Rossi"},{"role":"D","name":"Michael Colgrove"},{"role":"B","name":"Scott McClung"}]},{"s":7,"time":"4:20 PM","code":"OC","pool":"Open C","fill":"#8DB7DB","acc":"#15466B","field":10,"a":"Philadelphia Revolution Red","b":"ATX Heat Purple","crew":[{"role":"H","name":"Matthew C Ardoin"},{"role":"D","name":"Laurie Aaronson"},{"role":"B","name":"Jay Kramer"}]},{"s":7,"time":"4:20 PM","code":"OC","pool":"Open C","fill":"#8DB7DB","acc":"#15466B","field":11,"a":"Michigan Pride Blue","b":"San Antonio Los Tejanos","crew":[{"role":"H","name":"Neill Kovrig"},{"role":"D","name":"S. Micki Jones"},{"role":"B","name":"Bill Henderson"}]},{"s":7,"time":"4:20 PM","code":"OC","pool":"Open C","fill":"#8DB7DB","acc":"#15466B","field":12,"a":"Mass Hysteria","b":"Chicago Thunder","crew":[{"role":"H","name":"Jonathon Marquez"},{"role":"D","name":"Eric Weidner"},{"role":"B","name":"Jude McKenna"}]},{"s":7,"time":"4:20 PM","code":"OC","pool":"Open C","fill":"#8DB7DB","acc":"#15466B","field":13,"a":"Minnesota Lumberjocks Midnight","b":"Chicago Vortex","crew":[{"role":"H","name":"Austin Evans"},{"role":"D","name":"Peter Moy"},{"role":"B","name":"Justin Friedman-Hurvitz"}]},{"s":7,"time":"4:20 PM","code":"WC","pool":"W+ C","fill":"#D89BC0","acc":"#7D2557","field":14,"a":"Atlanta Gridlock","b":"PVD Anchors Cobalt","crew":[{"role":"H","name":"Nat Hewett"},{"role":"D","name":"Anthony M Lombardo"},{"role":"B","name":"Jonathan P Killian"}]}],"refs":["Adam Connaker","Andrew Staples","Anthony M Lombardo","Anthony Walker","Austin Evans","B. Mark Henry","Barraque Monfils- Evangelista","Bill Henderson","Brandon Waggoner","Brian Hawker","Brooke Blankenship","Carlos Carles","Chad Fisher","Chris Dockum","Chris Sauers","Christopher McSorley","Colby Shoop","Daniel Czecholinski","Danny Jesse","David Bruce","David Green","Desiree Abrams","Dwight Jr","Eric Weidner","Frank Rossi","Gary Taylor","Isaac Hamlin","Jason Morlan","Jay Kramer","Jim Clerkin","Jonathan Jensen","Jonathan P Killian","Jonathon Marquez","Josh Bytendorp","Jude McKenna","Justin Friedman-Hurvitz","KATRINA COOK","Keith Smith","Ken Westermann","Lance Burage","Laurie Aaronson","Lee Townsend","Leeron Kopelman","Marcus Han","Matthew C Ardoin","Matthew Herek","Matthew P Lucerto","Michael Colgrove","Nat Hewett","Neill Kovrig","Nick Sacco","Peter Moy","Regan McKendry","Rich Serrano","Rob Miller","Ryan Cardwell","S. Micki Jones","Scott McClung","Shawn Albritton","Sheldon Smith","Steven Amedeo"],"slots":["8:00 AM","9:25 AM","10:40 AM","12:30 PM","1:50 PM","3:05 PM","4:20 PM"]};
+const {games,refs,slots}=DATA;
+const POSNAME={H:"Head",D:"Down",B:"Back"};
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const slug=s=>encodeURIComponent(s);
+
+// per-ref index
+const byRef={};
+refs.forEach(r=>byRef[r]=[]);
+games.forEach(g=>g.crew.forEach(c=>byRef[c.name].push({g,role:c.role})));
+
+function counts(name){
+  const gs=byRef[name];
+  const o={H:0,D:0,B:0};
+  gs.forEach(x=>o[x.role]++);
+  return {games:gs.length,...o,rest:7-gs.length};
+}
+
+function renderNames(filter=""){
+  const f=filter.trim().toLowerCase();
+  const nav=document.getElementById("names");
+  const cur=(location.hash.match(/ref=([^&]+)/)||[])[1];
+  const curName=cur?decodeURIComponent(cur):null;
+  const list=refs.filter(r=>r.toLowerCase().includes(f));
+  if(!list.length){nav.innerHTML='<div class="nohit">No referee matches that.</div>';return;}
+  nav.innerHTML=list.map(r=>{
+    const c=byRef[r].length;
+    const active=(r===curName)?' class="active"':'';
+    return `<a href="#ref=${slug(r)}"${active}><span>${esc(r)}</span><span class="ct">${c}</span></a>`;
+  }).join("");
+}
+
+function renderRef(name){
+  const view=document.getElementById("view");
+  if(!byRef[name]){view.innerHTML='';renderLanding();return;}
+  const c=counts(name);
+  // map slot -> assignment
+  const bySlot={};
+  byRef[name].forEach(x=>bySlot[x.g.s]=x);
+  // duplicate team detection (same team + pool) for this ref
+  const seen={}, dupeKey={};
+  byRef[name].forEach(x=>{const k=x.g.a+"|"+x.g.pool, k2=x.g.b+"|"+x.g.pool;});
+  const teamCount={};
+  byRef[name].forEach(x=>{[x.g.a,x.g.b].forEach(t=>{const k=t+"||"+x.g.pool;teamCount[k]=(teamCount[k]||0)+1;});});
+
+  let cards="";
+  for(let s=1;s<=7;s++){
+    const x=bySlot[s];
+    const time=slots[s-1];
+    if(!x){
+      cards+=`<div class="slot free"><div class="time">${time.replace(" ","<small>")+"</small>"}</div><div class="tab" style="background:#eceae6"></div><div class="body">Open — no assignment</div></div>`;
+      continue;
+    }
+    const g=x.g;
+    const dupeTeams=[g.a,g.b].filter(t=>teamCount[t+"||"+g.pool]>1);
+    const dupeTag=dupeTeams.length?`<span class="dupe">2× ${esc(dupeTeams[0])}</span>`:"";
+    const crew=g.crew.map(m=>{
+      const me=m.name===name;
+      return `<a class="cm${me?' me':''}" href="#ref=${slug(m.name)}"><span class="pos ${m.role}">${m.role}</span>${esc(m.name)}</a>`;
+    }).join("");
+    cards+=`<div class="slot">
+      <div class="time">${time.split(" ")[0]}<small>${time.split(" ")[1]}</small></div>
+      <div class="tab" style="background:${g.fill}"></div>
+      <div class="body">
+        <div class="row1">
+          <span class="badge" style="background:${g.acc}">${g.pool}</span>
+          <span class="field">Field ${g.field}</span>
+          <span class="yourole">You: ${POSNAME[x.role]}</span>
+          ${dupeTag}
+        </div>
+        <div class="match">${esc(g.a)}<span class="v">vs</span>${esc(g.b)}</div>
+        <div class="crew">${crew}</div>
+      </div>
+    </div>`;
+  }
+  view.innerHTML=`
+    <div class="person-h">
+      <div class="nm">${esc(name)}<span class="bar"></span></div>
+      <div class="chips">
+        <div class="chip"><b>${c.games}</b>games</div>
+        <div class="chip"><b>${c.H}/${c.D}/${c.B}</b>H / D / B</div>
+        <div class="chip"><b>${c.rest}</b>open slots</div>
+      </div>
+    </div>
+    <div class="legend">Your day, slot by slot. <b>You: role</b> marks your position; tap any crew name to see <b>their</b> day.</div>
+    ${cards}`;
+  document.body.classList.add("viewing");
+}
+
+function renderLanding(){
+  document.getElementById("view").innerHTML=`
+    <div class="landing">
+      <div class="kicker" style="margin-bottom:6px">Friday · 8:00 AM – 5:35 PM</div>
+      <h2>Find your name to see your day</h2>
+      <p>Pick your name from the list to see all your games in order — your position, the matchup, the field, and your full crew for each slot.</p>
+    </div>`;
+  document.body.classList.remove("viewing");
+}
+
+function route(){
+  const m=location.hash.match(/ref=([^&]+)/);
+  if(m){const n=decodeURIComponent(m[1]); if(byRef[n]){renderRef(n);} else {renderLanding();}}
+  else {renderLanding();}
+  renderNames(document.getElementById("q").value);
+  if(window.innerWidth<=760 && m){window.scrollTo({top:0});}
+}
+
+document.getElementById("q").addEventListener("input",e=>renderNames(e.target.value));
+document.getElementById("back").addEventListener("click",e=>{e.preventDefault();location.hash="";document.body.classList.remove("viewing");window.scrollTo({top:0});});
+window.addEventListener("hashchange",route);
+route();
+</script>
+</body>
+</html>
